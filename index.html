@@ -49,6 +49,7 @@
                             <li><a href="#intro">Intro</a></li>
                             <li><a href="#location" class="login">Location</a></li>
                             <li><a href="#venue" class="login">Venue</a></li>
+                            <li><a href="#rsvp" class="btn-white btn-small">RSVP</a></li>
                             <!-- <li><a href="#intro">Intro</a></li>
                             <li><a href="#location" class="login">Location</a></li>
                             <li><a href="#venue" class="login">Venue</a></li> -->
@@ -140,6 +141,29 @@
         </div>
     </div>
 </section>
+
+<!-- <form id="fs-frm" name="basic-rsvp-form" accept-charset="utf-8">
+    <fieldset id="fs-frm-inputs">
+      <label for="full-name">Full Name</label>
+      <input type="text" name="name" id="full-name" placeholder="First and Last" required="">
+      <label for="attending">Will you Attend?</label>
+      <select name="attending" id="attending" required="">
+          <option value="" selected="" disabled="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+      </select>
+      <label for="plus">And with how many guests?</label>
+      <select name="plus" id="plus" required="">
+          <option value="0" selected="">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+      </select>
+      <input type="hidden" name="_subject" id="email-subject" value="RSVP">
+    </fieldset>
+    <input type="submit" value="RSVP", onclick="submitRSVP">
+  </form> -->
+
 
 <!--
 </section> -->
@@ -295,7 +319,7 @@
     </div>
 </section> -->
 
-<!-- <section class="rsvp text-center" id="rsvp">
+<section class="rsvp text-center" id="rsvp">
 
     <div id="rsvp-modal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -313,14 +337,12 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <!-- <div class="container">
+    <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <h3>What are you waiting for?</h3>
-                <p>We would greatly appreciate if you could RSVP before 1st of November '17</p>
-                <form id="rsvp-form" class="rsvp-form"
-                      action=""
-                      method="POST">
+                <p>We would greatly appreciate if you could RSVP before 1st of October '23</p>
+                <form id="rsvp-form" class="rsvp-form">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
@@ -358,7 +380,7 @@
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
-                    <button class="btn-fill rsvp-btn">
+                    <button class="btn-fill rsvp-btn" id="button", onclick=submitRSVP >
                         Yes,
                         that's me!
                     </button>
@@ -366,7 +388,28 @@
             </div>
         </div>
     </div> 
-</section> -->
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="script2.js"></script>
+    <script>
+
+        function submitRSVP() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var attending = document.querySelector('input[name="attending"]:checked').value;
+
+  // compose email message
+            var message = "Name: " + name + "\nEmail: " + email + "\nAttending: " + attending;
+
+  // send email
+//   window.location.href = "mailto:youremail@example.com?subject=RSVP&body=" + encodeURIComponent(message);
+
+  // add confetti animation if user is attending
+                jsConfetti.addConfetti();
+            }
+    </script>
+
+    <canvas id="confetti-canvas"></canvas>
+</section>
 
 <footer>
     <div class="container">
