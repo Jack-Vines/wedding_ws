@@ -342,7 +342,8 @@
             <div class="col-md-6 col-md-offset-3">
                 <h3>What are you waiting for?</h3>
                 <p>We would greatly appreciate if you could RSVP before 1st of October '23</p>
-                <form id="rsvp-form" class="rsvp-form">
+                <form id="rsvp-form" class="rsvp-form" method="POST" target="iframe"
+                    action="https://script.google.com/macros/s/AKfycby1S2AMtKkkdojir9CRDYFlyrhXyPAsN3uDnWogXmoi3lDRCHGc1h02EXEftrfry3Ge/exec">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
@@ -354,7 +355,7 @@
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
                                 <i class="fa fa-user"></i><input name="name" class=""
-                                                                 placeholder="Your name"
+                                                                 placeholder="Your name(s)"
                                                                  required>
                             </div>
                         </div>
@@ -362,17 +363,16 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-users"></i><input type="number" name="extras" class="" min="0"
-                                                                  max="4"
-                                                                  placeholder="Husband/Wife or kids"
+                                <i class="fa fa-users"></i><input type="name" name="attending" class="text" id="attending"
+                                                                  placeholder="Attending?"
                                                                   required>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="form-input-group">
-                                <i class="fa fa-key"></i><input type="number" name="invite_code" id="invite_code"
-                                                                class="" min="0"
-                                                                placeholder="Invite code"
+                                <i class="fa fa-key"></i><input type="notes" name="notes" id="notes"
+                                                                class=""
+                                                                placeholder="Notes"
                                                                 required>
                             </div>
                         </div>
@@ -380,12 +380,29 @@
                     <div class="row">
                         <div class="col-md-12" id="alert-wrapper"></div>
                     </div>
-                    <button class="btn-fill rsvp-btn" id="button", onclick=submitRSVP >
+                    <button type="submit" class="btn-fill rsvp-btn" id="button", onclick=submitRSVP >
                         Yes,
                         that's me!
                     </button>
                 </form>
+                <iframe name="iframe" style="position: absolute; visibility: hidden"></iframe>
             </div>
+            <div id="thank_you" style="display: none;">
+                <p>Thanks for filling in the form! Feel free to fill it in again if anythong changes.</p>
+                <button id="close", type="submit">Close</button>
+            </div>
+            <script>
+                var nextStep = document.querySelector('#close');
+              
+                nextStep.addEventListener('click', function (e) {
+                  e.preventDefault();
+                  // Hide first view
+                  document.getElementById('rsvp-form').style.display = 'block';
+              
+                  // Show thank you message element
+                  document.getElementById('thank_you').style.display = 'none';
+                });
+            </script>
         </div>
     </div> 
     <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
